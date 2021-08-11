@@ -797,13 +797,8 @@
           "builder": "@nrwl/linter:lint",
           "options": {
             "linter": "eslint",
-            "tsConfig": [
-              "libs/remix-core-plugin/tsconfig.lib.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/remix-core-plugin/**/*"
-            ]
+            "tsConfig": ["libs/remix-core-plugin/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**", "!libs/remix-core-plugin/**/*"]
           }
         },
         "build": {
@@ -869,6 +864,22 @@
             "exclude": ["**/node_modules/**", "!libs/remix-ui/renderer/**/*"]
           }
 
+        }
+      }
+    },
+    "remix-ui-helper": {
+      "root": "libs/remix-ui/helper",
+      "sourceRoot": "libs/remix-ui/helper/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": ["libs/remix-ui/helper/tsconfig.lib.json"],
+            "exclude": ["**/node_modules/**", "!libs/remix-ui/helper/**/*"]
+          }
         }
       }
     }
