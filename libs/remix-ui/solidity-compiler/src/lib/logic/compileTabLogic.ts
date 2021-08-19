@@ -21,7 +21,7 @@ export class CompileTab extends Plugin {
   constructor (public api, public contentImport) {
     super(profile)
     this.event = new EventEmitter()
-    this.compiler = new Compiler((url, cb) => this.call('contentImport', 'resolveAndSave', url).then((result) => cb(null, result)).catch((error) => cb(error.message)))
+    this.compiler = new Compiler((url, cb) => api.resolveContentAndSave(url).then((result) => cb(null, result)).catch((error) => cb(error.message)))
   }
 
   init () {
@@ -114,10 +114,10 @@ export class CompileTab extends Plugin {
           `
           const configFilePath = 'remix-compiler.config.js'
           this.api.writeFile(configFilePath, fileContent)
-          this.call('hardhat', 'compile', configFilePath).then((result) => {
-            this.call('terminal', 'log', { type: 'info', value: result })
+          this.api.compileWithHardhat(configFilePath).then((result) => {
+            this.api.logToTerminal({ type: 'info', value: result })
           }).catch((error) => {
-            this.call('terminal', 'log', { type: 'error', value: error })
+            this.api.logToTerminal({ type: 'error', value: error })
           })
         }
       }
