@@ -1,16 +1,8 @@
-import { Plugin } from '@remixproject/engine'
-
 const packageJson = require('../../../../../../package.json')
 const Compiler = require('@remix-project/remix-solidity').Compiler
 const EventEmitter = require('events')
-const profile = {
-  name: 'solidity-logic',
-  displayName: 'Solidity compiler logic',
-  description: 'Compile solidity contracts - Logic',
-  methods: ['getCompilerState'],
-  version: packageJson.version
-}
-export class CompileTab extends Plugin {
+
+export class CompileTab {
   public compiler
   public optimize
   public runs
@@ -19,7 +11,6 @@ export class CompileTab extends Plugin {
   public event
 
   constructor (public api, public contentImport) {
-    super(profile)
     this.event = new EventEmitter()
     this.compiler = new Compiler((url, cb) => api.resolveContentAndSave(url).then((result) => cb(null, result)).catch((error) => cb(error.message)))
   }
