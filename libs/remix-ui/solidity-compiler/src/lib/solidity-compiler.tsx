@@ -71,7 +71,7 @@ export const SolidityCompiler = (props: SolidityCompilerProps) => {
 
   const updateCurrentVersion = (value) => {
     setCurrentVersion(value)
-    plugin.setSelectedVersion(value)
+    plugin.setParameters({ version: value })
   }
 
   const modal = async (title: string, message: string | JSX.Element, okLabel: string, okFn: () => void, cancelLabel?: string, cancelFn?: () => void) => {

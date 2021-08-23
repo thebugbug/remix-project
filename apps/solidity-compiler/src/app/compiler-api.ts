@@ -123,8 +123,7 @@ export const CompilerApiMixin = (Base) => class extends Base {
       'currentFile': () => this.currentFile,
       'hideWarnings': () => false,
       'autoCompile': () => false,
-      'includeNightlies': () => false,
-      'optimise': () => false
+      'includeNightlies': () => false
     }
     return conf[name]()
   }
@@ -187,6 +186,14 @@ export const CompilerApiMixin = (Base) => class extends Base {
     this.on('filePanel', 'setWorkspace', (workspace) => {
       this.resetResults()
       if (this.onSetWorkspace) this.onSetWorkspace(workspace)
+    })
+
+    this.on('editor', 'sessionSwitched', () => {
+      if (this.onSessionSwitched) this.onSessionSwitched()
+    })
+
+    this.on('editor', 'contentChanged', () => {
+      if (this.onContentChanged) this.onContentChanged()
     })
 
     this.compileTabLogic.event.on('startingCompilation', this.data.eventHandlers.onStartingCompilation)
