@@ -313,7 +313,8 @@ export function runTest (testName: string, testObject: any, contractDetails: Com
                     assertMethod,
                     returned: testEvent[3],
                     expected: testEvent[4],
-                    location
+                    location,
+                    web3
                   }
                   if (hhLogs) resp.hhLogs = hhLogs
                   testCallback(undefined, resp)
@@ -353,7 +354,8 @@ export function runTest (testName: string, testObject: any, contractDetails: Com
           filename: testObject.filename,
           time: time,
           errMsg: err.message,
-          context: testName
+          context: testName,
+          web3
         }
         testCallback(undefined, resp)
         failureNum += 1
