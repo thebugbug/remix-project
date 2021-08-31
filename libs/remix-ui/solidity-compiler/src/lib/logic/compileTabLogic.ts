@@ -1,4 +1,3 @@
-const packageJson = require('../../../../../../package.json')
 const Compiler = require('@remix-project/remix-solidity').Compiler
 const EventEmitter = require('events')
 
